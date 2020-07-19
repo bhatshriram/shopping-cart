@@ -16,12 +16,12 @@ CURRENT_DATE,'http://media.istockphoto.com/photos/smiling-young-man-in-blank-bla
 
 INSERT INTO PRODUCT(PRODUCT_ID, PRODUCT_NAME,PRODUCT_DESCRIPTION,CATEGORY_ID, PRICE,SHIPPING_PRICE,STYLE,
 COLOR, CURRENCY_FORMAT, IS_ACTIVE,IS_DELETED,CREATED_DATE,IMAGEURL)
-VALUES(2, 'Man Grey Tanktop','',1, 499,49,'Front print and paisley print','Grey','INR',True,False,
+VALUES(2, 'Man Grey Tanktop','Grey Tanktop',1, 499,49,'Front print and paisley print','Grey','INR',True,False,
  CURRENT_DATE,'http://media.istockphoto.com/photos/portrait-of-young-man-wearing-tshirt-picture-id465207699?k=6&m=465207699&s=612x612&w=0&h=wSacC0bmcrekig1DW8lOwH7y3X0e4R9266-TuivVQJA=');
 
 INSERT INTO PRODUCT(PRODUCT_ID, PRODUCT_NAME,PRODUCT_DESCRIPTION,CATEGORY_ID, PRICE,SHIPPING_PRICE,STYLE,
 COLOR, CURRENCY_FORMAT, IS_ACTIVE,IS_DELETED,CREATED_DATE,IMAGEURL)
-VALUES(3, 'Man Brown Shirt','',1, 499,49,'Front print and paisley print','Brown','INR',True,False,
+VALUES(3, 'Man Brown Shirt','Brown Shirt',1, 499,49,'Front print and paisley print','Brown','INR',True,False,
  CURRENT_DATE,'http://media.istockphoto.com/photos/young-man-looks-to-the-side-picture-id184616842?k=6&m=184616842&s=612x612&w=0&h=SmtsffRByKDH4_HtzGY8bWvHgH8o_4epWVPogvfJXnk=');
 
 INSERT INTO PRODUCT(PRODUCT_ID, PRODUCT_NAME,PRODUCT_DESCRIPTION,CATEGORY_ID, PRICE,SHIPPING_PRICE,STYLE,

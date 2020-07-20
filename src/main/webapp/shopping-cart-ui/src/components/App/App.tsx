@@ -8,8 +8,6 @@ const App = ()=> {
           <AllProducts />
         </div>
       );
-    
- 
 }
 
 export default App;

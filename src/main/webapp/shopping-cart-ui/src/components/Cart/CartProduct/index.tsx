@@ -4,31 +4,21 @@ import '../index.css'
 import { ShoppingCart } from '../../../services/shoppingCartService'
 
 interface IProps {
-    product: any
-}
-
-interface Istate {
-    cart: any,
+    product: any,
     productCount: number
 }
 
-export class CartProduct extends Component<IProps,Istate> {
+export class CartProduct extends Component<IProps> {
 
     constructor(props: IProps) {
         super(props);
-
-        this.state = {
-            cart:{},
-            productCount:1
-        }
     }
 
-    removeProduct(product: any) {
-        ShoppingCart.deleteCardProduct(1, product.productId)
+    handleRemoveProduct(productId: any, allMatch: boolean) {
+        ShoppingCart.deleteCartProduct(1, productId,allMatch)
             .then((res) => {
-                this.setState({ cart: res })
                 window.location.reload(true);
-                alert("Cart Item deleted successfully!");
+                alert("Successfully removed the product!");
             })
             .catch(() => {
                 alert("Error while deleting cart item");
@@ -38,8 +28,8 @@ export class CartProduct extends Component<IProps,Istate> {
     handleAddProduct(product: any) {
         ShoppingCart.addToCart(1, product)
         .then((res) => {
-         alert("Product added to your cart!")
-         this.setState({productCount: (this.state.productCount+1)});
+         alert("Successfully added the product!")
+         window.location.reload(true);
         })
         .catch(()=> {
           alert("Error occured while adding product to cart!")
@@ -48,29 +38,31 @@ export class CartProduct extends Component<IProps,Istate> {
     }
 
     render() {
-        const { product } = this.props;
+        const { product, productCount } = this.props;
         return (
             <div className='cart-item'>
                 <table>
                     <tr>
                         <td style={{ width: "20%" }}>
                             <div className="img">
-                                <img alt={'product.name'} src={product.imageURL} />
+                                <img alt={'product.name'} src={JSON.parse(product).imageURL} />
                             </div>
                         </td>
                         <td style={{ width: "30%" }}>
-                            <div className='items-text' style={{ fontWeight: "bold" }} >{product.productName}</div>
+                            <div className='items-text' style={{ fontWeight: "bold" }} >{JSON.parse(product).productName}</div>
                             <div className='items-text'>{product.productDescription}</div>
-                            <div className='items-text'>Price: <span className='fa fa-inr'>{product.price}</span></div>
+                            <div className='items-text'>Price: <span className='fa fa-inr'>{JSON.parse(product).price}</span></div>
                         </td>
                         <td className="item-count" style={{ width: "13%" }}>
-        <div style={{ fontWeight: "bold" }} >Total Item: <span>{this.state.productCount}</span></div>
+                         <div style={{ fontWeight: "bold" }} >Total Item: <span>{productCount}</span></div>
                             <br />
-                            <div className="plusButton" onClick={() => {this.handleAddProduct(product)}}>+</div>
-
+                            <div style={{display:'flex'}}>
+                            <div className="addRemoveButton" onClick={() => {this.handleRemoveProduct(JSON.parse(product).productId, false)}}>-</div>
+                            <div className="addRemoveButton" onClick={() => {this.handleAddProduct(JSON.parse(product))}}>+</div>
+                            </div>
                         </td>
                         <td style={{ width: "30%" }}>
-                            <div className='buttonItem' onClick={() => { this.removeProduct(product) }} >Remove</div>
+                            <div className='buttonItem' onClick={() => { this.handleRemoveProduct(JSON.parse(product).productId, true) }} >Remove</div>
                         </td>
                     </tr>
                 </table>
@@ -79,6 +71,7 @@ export class CartProduct extends Component<IProps,Istate> {
             </div>
         )
     }
+  
    
 
 }

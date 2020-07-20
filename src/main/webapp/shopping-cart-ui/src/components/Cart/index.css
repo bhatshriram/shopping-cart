@@ -79,18 +79,18 @@
     padding:auto;
   }
 
-  .plusButton {
-    /* width: 3em; */
+  .addRemoveButton {
+    width: 3em;
     position: relative;
     box-sizing: border-box;
     padding: 2px;
-    /* margin:auto; */
+    margin:auto;
     border: 1px solid transparent;
     cursor: pointer;
     color:white;
     background-color:black;      
   }
-  .plusButton:hover {
+  .addRemoveButton:hover {
     border: 1px solid #eee;
     background-color:rgb(15, 70, 133);   
   }

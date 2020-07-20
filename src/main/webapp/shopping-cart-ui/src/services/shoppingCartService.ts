@@ -56,11 +56,11 @@ export class ShoppingCart {
         })
     }
 
-    public static deleteCardProduct(customerId:number, productId:number) {
+    public static deleteCartProduct(customerId:number, productId:number, allMatch:Boolean) {
 
         return new Promise<Object>((resolve, reject) => {
 
-            axios.delete('http://localhost:8080/api/v1/Cart/'+customerId+'/'+productId)
+            axios.delete('http://localhost:8080/api/v1/Cart/'+customerId+'/'+productId+'/'+allMatch)
                 .then((response) => {
                     resolve(response.data.body);
                 })

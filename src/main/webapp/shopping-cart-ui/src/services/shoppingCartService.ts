@@ -1,14 +1,14 @@
 import axios from 'axios';
+const apiURL = "http://localhost:8080/api/v1";
 
-// Execute shopping-cart web services. 
+// Execute shopping-cart web api's. 
 export class ShoppingCart {
 
     public static getProducts(categoryId?: number) {
 
         return new Promise<Object>((resolve, reject) => {
-
             if (categoryId === undefined) {
-                axios.get('http://localhost:8080/api/v1/Product')
+                axios.get(apiURL + '/Product')
                     .then((response) => {
                         resolve(response.data.body);
                     })
@@ -16,7 +16,7 @@ export class ShoppingCart {
                         reject(error);
                     })
             } else {
-                axios.get('http://localhost:8080/api/v1/Product?category=' + categoryId)
+                axios.get(apiURL + '/Product?category=' + categoryId)
                     .then((response) => {
                         resolve(response.data.body);
                     })
@@ -28,11 +28,10 @@ export class ShoppingCart {
         })
     }
 
-    public static addToCart(customerId:number, product:Object) {
+    public static addToCart(customerId: number, productId: number) {
 
         return new Promise<Object>((resolve, reject) => {
-
-            axios.post('http://localhost:8080/api/v1/Cart/'+customerId, product)
+            axios.post(apiURL + '/Cart/' + customerId + '/' + productId)
                 .then((response) => {
                     resolve(response.data.body);
                 })
@@ -42,11 +41,10 @@ export class ShoppingCart {
         })
     }
 
-    public static getCartProduct(customerId:number) {
+    public static getCartProduct(customerId: number) {
 
         return new Promise<Object>((resolve, reject) => {
-
-            axios.get('http://localhost:8080/api/v1/Cart/'+customerId)
+            axios.get(apiURL + '/Cart/' + customerId)
                 .then((response) => {
                     resolve(response.data.body);
                 })
@@ -56,11 +54,10 @@ export class ShoppingCart {
         })
     }
 
-    public static deleteCartProduct(customerId:number, productId:number, allMatch:Boolean) {
+    public static deleteCartProduct(customerId: number, productId: number, allMatch: Boolean) {
 
         return new Promise<Object>((resolve, reject) => {
-
-            axios.delete('http://localhost:8080/api/v1/Cart/'+customerId+'/'+productId+'/'+allMatch)
+            axios.delete(apiURL + '/Cart/' + customerId + '/' + productId + '/' + allMatch)
                 .then((response) => {
                     resolve(response.data.body);
                 })

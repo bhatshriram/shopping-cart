@@ -3,6 +3,7 @@ package com.xyz.shoppingcart.services;
 import com.xyz.shoppingcart.models.Cart;
 import com.xyz.shoppingcart.models.Product;
 import com.xyz.shoppingcart.repositories.CartRepository;
+import com.xyz.shoppingcart.repositories.ProductRepository;
 import com.xyz.shoppingcart.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,8 +21,11 @@ public class CartService {
     @Autowired
     private ProductValidator productValidator;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     // Add product to cart repository
-    public Cart addToCart(Long customerId, Product product) throws Exception {
+    public Cart addToCart(Long customerId, Long productId) throws Exception {
         productValidator.validateCustomer(customerId);
         Cart cart = new Cart();
         List<Cart> carts= cartRepository.findAll();
@@ -34,6 +38,7 @@ public class CartService {
        }
 
        List<Product> existingProducts= cart.getProducts();
+       Product product= productRepository.getOne(productId);
        existingProducts.add(product);
        cart.setProducts(existingProducts);
        cart.setTotalPrice(totalCartProductPrice(existingProducts));

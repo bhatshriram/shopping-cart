@@ -6,17 +6,16 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 import App from './components/App/App';
-import AllProducts from './components/AllProducts';
 import Cart from './components/Cart';
 import NavBars from './components/NavBars';
 
 ReactDOM.render(
-    <BrowserRouter>
+  <BrowserRouter>
     <NavBars />
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route exact path="/Cart" component={Cart} />
-        </Switch>
-    </BrowserRouter>
-    , document.getElementById('root'));
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route exact path="/Cart" component={Cart} />
+    </Switch>
+  </BrowserRouter>
+  , document.getElementById('root'));
 serviceWorker.unregister();

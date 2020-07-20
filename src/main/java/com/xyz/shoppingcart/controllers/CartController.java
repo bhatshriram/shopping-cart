@@ -20,12 +20,13 @@ public class CartController {
     private CartService cartService;
 
     // Adds product to cart.
-    @RequestMapping(value="{customerId}", method = RequestMethod.POST)
-    public ResponseEntity<ApiResponse> addToCart(@PathVariable Long customerId, @RequestBody final Product product){
+    @RequestMapping(value="{customerId}/{productId}", method = RequestMethod.POST)
+    public ResponseEntity<ApiResponse> addToCart(@PathVariable("customerId") Long customerId,
+                                                 @PathVariable("productId") Long productId){
         ApiResponse apiResponse= new ApiResponse();
         HttpStatus status = null;
         try {
-            apiResponse.setBody(cartService.addToCart(customerId, product));
+            apiResponse.setBody(cartService.addToCart(customerId, productId));
             apiResponse.setStatusCode(200);
             status= HttpStatus.ACCEPTED;
             apiResponse.setMessage("Product added to cart Successfully!");

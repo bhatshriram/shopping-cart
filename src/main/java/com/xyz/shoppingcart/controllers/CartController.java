@@ -57,13 +57,13 @@ public class CartController {
         return new ResponseEntity<ApiResponse>(apiResponse,status);
     }
 
-    @RequestMapping(value="{customerId}/{productId}", method = RequestMethod.DELETE)
+    @RequestMapping(value="{customerId}/{productId}/{allmatch}", method = RequestMethod.DELETE)
     public  ResponseEntity<ApiResponse> deleteProductFromCart(@PathVariable("customerId") Long customerId,
-    @PathVariable("productId") Long productId) throws Exception{
+    @PathVariable("productId") Long productId, @PathVariable("allmatch") Boolean allmatch) throws Exception{
         ApiResponse apiResponse= new ApiResponse();
         HttpStatus status = null;
         try {
-            Cart cart= cartService.deleteProductFromCart(customerId, productId);
+            Cart cart= cartService.deleteProductFromCart(customerId, productId, allmatch);
             apiResponse.setBody(cart);
             apiResponse.setStatusCode(200);
             status= HttpStatus.ACCEPTED;

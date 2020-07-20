@@ -19,10 +19,12 @@ public class ProductService {
     @Autowired
     ProductValidator productValidator;
 
+    // Returns all products exists in the db.
     public List<Product> getAllProducts() throws Exception {
         return productRepository.findAll();
     }
 
+    // Returns all products exists in the db based on category id.
     public List<Product> getAllProducts(Long categoryId) throws Exception {
         productValidator.validateCategory(categoryId);
         return productRepository.findAll().stream().filter(product ->

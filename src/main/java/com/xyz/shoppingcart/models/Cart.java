@@ -19,6 +19,13 @@ public class Cart {
     private Date createdDate;
     private float totalPrice;
 
+        @ManyToMany
+        @JoinTable(
+        name="cart_product",
+        joinColumns = @JoinColumn(name="cartId"),
+        inverseJoinColumns = @JoinColumn(name="productId"))
+    private List<Product> products;
+
     public float getTotalPrice() {
         return totalPrice;
     }
@@ -26,9 +33,6 @@ public class Cart {
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> products;
 
     public List<Product> getProducts() {
         return products;

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +27,18 @@ public class Product {
     private Boolean isDeleted;
     private Date createdDate;
     private String imageURL;
+
+    @ManyToMany(mappedBy = "products")
+    @JsonIgnore
+    List<Cart> carts;
+
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
 
     public String getImageURL() {
         return imageURL;
